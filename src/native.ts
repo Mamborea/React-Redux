@@ -1,5 +1,4 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Platform } from 'react-native';
 import { loadToken } from './features/authSlice';
 import { setBaseUrl } from './features/configSlice';
 import type { TokenStorage } from './storage';
@@ -15,8 +14,8 @@ export const store = createStore({
   storage: nativeStorage,
 });
 
-const baseUrl =
-  Platform.OS === 'android' ? 'http://10.0.2.2:8080' : 'http://localhost:8080';
+// Use production API instead of localhost
+const baseUrl = 'https://api.mambokara.dev';
 store.dispatch(setBaseUrl(baseUrl));
 
 store.dispatch(loadToken());
